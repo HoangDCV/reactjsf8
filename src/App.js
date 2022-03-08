@@ -1,32 +1,11 @@
 import {useState} from 'react';
-
+import Content from './Content';
 function App() {
-  const [jobs, setJobs] = useState([]);
-  const [job, setJob]= useState('')
-  const handlerAddJob = () => {
-    setJobs( prev => [...prev, job])
-    setJob('')
-  }
-  const handleDelete = (jobDelete) => {
-    setJobs(jobs.filter(job=> job !== jobDelete))
-  }
+  const [show, setShow] = useState(false)
   return (
-    <div className='App-todo' style={{padding : 50}}>
-      <input 
-        value={job}
-        onChange={e => setJob(e.target.value)}
-      />
-      <button onClick={handlerAddJob}>Add</button>
-
-      <ul>
-      {
-        jobs.map((job, index) => (
-          <li key={index}>{job} 
-            <button onClick={() => handleDelete(job)}>Delete</button>
-          </li>
-        ))
-      }
-      </ul>
+    <div>
+      <button onClick={()=> setShow(!show)}>show</button>
+      {show && <Content/>}
     </div>
   );
 }
